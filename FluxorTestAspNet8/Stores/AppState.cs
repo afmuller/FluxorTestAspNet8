@@ -35,7 +35,5 @@ public class AppEffects
         Console.WriteLine(action.Message);  
     }
 
-    
-
 }
 
