@@ -1,0 +1,29 @@
+﻿@page "/"
+@using Fluxor
+@using FluxorTestAspNet8.Stores
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world! Last message sent: @State.Value.LastMessage</h1>
+
+Welcome to your new app.
+
+
+<button class="btn btn-primary" @onclick="SendMessageToConsole">Send Message to Console via Fluxor</button>
+
+@code {
+    private int currentCount = 0;
+
+    [Inject]
+    public IDispatcher Dispatcher { get; set; }
+
+    [Inject]
+    public IState<AppState> State { get; set; }
+
+    private void SendMessageToConsole()
+    {
+        currentCount++;
+        Dispatcher.Dispatch(new SendMessageToConsole($"Hello from Fluxor {currentCount}"));
+
+    }
+}
